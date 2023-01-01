@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="mystore">
+    <div class="store_banner">
+      <div class="logo">
+        <%= image_tag("logo.png") %>
+      </div>
+      <div class="title">
+        <%= @page_title || "Bao Tao 网购家园" %>
+      </div>
+    </div>
+
+    <div class="store_content">
+      <div class="columns">
+        <div class="side">
+          side
+        </div>
+      </div>
+
+      <div class="main">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

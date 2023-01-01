@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+<div id="products">
+  <% @products.each do |product| %>
+    <p>
+      <strong>Title:</strong>
+      <%= product.title %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= truncate(strip_tags(product.description), length:80) %>
+    </p>
+
+    <p>
+      <strong>Image:</strong>
+      <%= image_tag(product.image_url, :class => 'list_image') %>
+    </p>
+
+    <p>
+      <strong>Price:</strong>
+      <%= product.price %>
+    </p>
+    <p>
+      <%= link_to "Show this product", product %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New product", new_product_path %>
