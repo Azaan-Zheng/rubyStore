@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<div>
+  <p>
+    <% @user.blogs.each do |blog| %>
+        <p>
+          <strong>Title:</strong>
+          <%= link_to blog.title, blog %>
+        </p>
+
+        <p>
+          <strong>Content:</strong>
+          <%= blog.content %>
+        </p>
+
+    <% end %>
+  </p>
+  <% if @user == current_user %>
+    <%= link_to "Create New Blog", new_blog_path %> 
+  <% end %>
+  
+</div>
