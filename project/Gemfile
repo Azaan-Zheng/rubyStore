@@ -52,6 +52,8 @@ gem 'therubyracer'
 
 gem 'jquery-rails'
 
+gem 'will_paginate'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
