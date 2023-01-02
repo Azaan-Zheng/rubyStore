@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    @cart = Cart.new
 
     respond_to do |format|
       if @user.save

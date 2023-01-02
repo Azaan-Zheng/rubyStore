@@ -6,7 +6,8 @@ class User < ApplicationRecord
     
     USER_TYPES = [1, 2]
 
-    has_many :users, dependent: :destroy
+    has_many :orders, dependent: :destroy
+    has_one :cart, dependent: :destroy
     validates :thename, :thetype, :presence => true 
     validates :thetype, :inclusion => USER_TYPES
     validates :thename, :uniqueness => true
