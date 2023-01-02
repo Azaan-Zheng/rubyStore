@@ -1,2 +1,8 @@
 <div id="<%= dom_id cart %>">
+    <%= render cart.items %>
+
+    <div>
+        <h2>总价：</h2>
+        <div><%= @cart.total_price %></div>
+    </div>
 </div>
