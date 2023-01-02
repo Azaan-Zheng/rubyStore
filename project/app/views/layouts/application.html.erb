@@ -18,6 +18,15 @@
       <div class="title">
         <%= @page_title || "Bao Tao 网购家园" %>
       </div>
+      <div class='status'>
+        <% if user_signed_in? %>
+          <%= button_to "Log out", destroy_user_session_path, method: :get %>
+          <%= link_to "Personal center", current_user %><br>
+        <% else %>
+          <%= button_to "Log in", new_user_session_url, method: :get %>
+          <%= button_to "Sign up", new_user_registration_url, method: :get %>
+        <% end %>
+      </div>
     </div>
 
     <div class="store_content">

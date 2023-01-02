@@ -1,0 +1,23 @@
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    devise :database_authenticatable, :registerable,
+            :recoverable, :rememberable, :validatable
+    
+    USER_TYPES = [1, 2]
+
+    has_many :users, dependent: :destroy
+    validates :thename, :thetype, :presence => true 
+    validates :thetype, :inclusion => USER_TYPES
+    validates :thename, :uniqueness => true
+
+    before_create :ensure_has_a_admin
+
+    protected
+      def ensure_has_a_admin
+        if User.count == 0
+          self.thetype = 2
+        end
+      end
+    
+end

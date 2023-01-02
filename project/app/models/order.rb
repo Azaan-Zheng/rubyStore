@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
     PAYMENT_TYPES = ["微信", "支付宝"]
 
+    belongs_to :user
     has_many :items, dependent: :destroy
     validates :name, :address, :email, :pay_type, :presence => true
     validates :pay_type, :inclusion => PAYMENT_TYPES
