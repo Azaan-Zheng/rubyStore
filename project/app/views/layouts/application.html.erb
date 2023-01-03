@@ -20,21 +20,29 @@
       </div>
       <div class='status'>
         <% if user_signed_in? %>
-          <%= button_to "Log out", destroy_user_session_path, method: :get %>
-          <%= link_to "Personal center", current_user %><br>
+          <div class='status_option'>
+            <%= link_to "购物大厅", store_url %>
+          </div>
+          <div class='status_option'>
+            <%= link_to "个人中心", current_user %>
+          </div>
+          <div class='status_option'>
+            <%= link_to "退出登录", destroy_user_session_path, method: :get %>
+          </div>
         <% else %>
-          <%= button_to "Log in", new_user_session_url, method: :get %>
-          <%= button_to "Sign up", new_user_registration_url, method: :get %>
+          <div class='status_option'>
+            <%= link_to "登录", new_user_session_url, method: :get %>
+          </div>
         <% end %>
       </div>
     </div>
 
     <div class="store_content">
-      <div class="columns">
+      <%# <div class="columns">
         <div class="side">
           side
         </div>
-      </div>
+      </div> %>
 
       <div class="main">
         <%= yield %>

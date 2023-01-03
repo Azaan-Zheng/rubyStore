@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_user!
-    helper_method :current_user, :user_signed_in?
+    helper_method :current_user, :user_signed_in?, :user_admin?
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -23,4 +23,9 @@ class ApplicationController < ActionController::Base
                 return current_user.cart
             end
         end
+
+        def user_admin?
+            current_user.thetype == 2
+        end
+                
 end
