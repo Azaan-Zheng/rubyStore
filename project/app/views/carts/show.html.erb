@@ -1,14 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<div class="main_cart">
 
-<%= render @cart %>
+  <!--
+  <p style="color: green"><%= notice %></p>
+  -->
 
+  <div class="cart_bar">
+  <!--
+    <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
+    <%= link_to "Back to carts", carts_path %>
+  -->
+    <div class="bar_title">
+      我的购物车
+    </div>
 
+    <div class="bar_options">
+      <div class="common_button green_button">
+        <%= button_to "清空购物车", @cart, method: :delete %>
+      </div>
+      <div class="common_button yellow_button">
+        <%= button_to "结算", new_order_path, method: :get %>
+      </div>
+      
+    </div>
 
-<div>
-  <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
-  <%= link_to "Back to carts", carts_path %>
+    
+  </div>
 
-  <%= button_to "结算", new_order_path, method: :get %>
+  <div class="cart_content">
+    <%= render @cart %>
+  </div>
 
-  <%= button_to "清空购物车", @cart, method: :delete %>
 </div>

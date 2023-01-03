@@ -1,8 +1,10 @@
-<div id="<%= dom_id cart %>">
-    <%= render cart.items %>
+<div id="<%= dom_id cart %>" class="cart_content_one">
+    <div class="content_head">
+        <div class="head_title">总价：</div>
+        <div class="head_item"><%= @cart.total_price %></div>
+    </div>
 
-    <div>
-        <h2>总价：</h2>
-        <div><%= @cart.total_price %></div>
+    <div class="content_form">
+        <%= render cart.items %>
     </div>
 </div>
