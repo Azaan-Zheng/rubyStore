@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
+
     protected
 
     def configure_permitted_parameters
@@ -23,6 +24,7 @@ class ApplicationController < ActionController::Base
                 return current_user.cart
             end
         end
+            
 
         def user_admin?
             current_user.thetype == 2

@@ -1,42 +1,44 @@
 <%= form_with(model: product) do |form| %>
-  <% if product.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+  <div class="fielder fadeIn first error">
+    <% if product.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-        <% product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+          <% product.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
+  <div class="fielder fadeIn second">
+    <%= form.label "商品名称", class: "label", style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
-  <div>
-    <%= form.label :type, style: "display: block" %>
-    <%= form.select :type, Product::PRODUCT_TYPES, prompt: '请选择商品类型' %>
+  <div class="fielder fadeIn second lineline">
+    <%= form.label "商品类型", class: "label", style: "display: block" %>
+    <%= form.select :product_type, Product::PRODUCT_TYPES, prompt: '请选择商品类型' %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
+  <div class="fielder fadeIn third">
+    <%= form.label "详情描述", class: "label", style: "display: block" %>
     <%= form.text_area :description, :rows => 6 %>
   </div>
 
-  <div>
-    <%= form.label :image_url, style: "display: block" %>
+  <div class="fielder fadeIn third">
+    <%= form.label "图片链接", class: "label", style: "display: block" %>
     <%= form.text_field :image_url %>
   </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
+  <div class="fielder fadeIn fourth">
+    <%= form.label "商品价格", class: "label", style: "display: block" %>
     <%= form.text_field :price %>
   </div>
 
-  <div>
+  <div class="fadeIn fourth">
     <%= form.submit %>
   </div>
 <% end %>

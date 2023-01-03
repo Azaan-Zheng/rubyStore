@@ -3,8 +3,13 @@
 <%= render @product %>
 
 <div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
 
-  <%= button_to "Destroy this product", @product, method: :delete %>
+  <%= link_to "编辑商品", edit_product_path(@product) %> |
+  <%= link_to "返回大厅", store_url %>
+
+  <%= button_to '加入购物车',items_path(product_id: @product) %>
+
+  <%= button_to '收藏',items_path(product_id: @product) %>
+
+  <%= button_to "下架商品", @product, method: :delete %>
 </div>

@@ -5,10 +5,10 @@ class Product < ApplicationRecord
     has_many :items
     before_destroy :ensure_not_referenced_by_any_item
 
-    validates :title, :description, :type, :image_url, :presence => true
+    validates :title, :description, :product_type, :image_url, :presence => true
     validates :price, :numericality => {:greater_than_or_equal_to => 0.01}
     validates :title, :uniqueness => true
-    validates :type, :inclusion => PRODUCT_TYPES
+    validates :product_type, :inclusion => PRODUCT_TYPES
     validates :image_url, format: {
         with:    %r{\.(gif|jpg|png)\z}i,
         message: '应为gif,png或jpg格式图片'

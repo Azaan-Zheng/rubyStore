@@ -20,15 +20,28 @@
       </div>
       <div class='status'>
         <% if user_signed_in? %>
-          <div class='status_option'>
-            <%= link_to "购物大厅", store_url %>
-          </div>
-          <div class='status_option'>
-            <%= link_to "个人中心", current_user %>
-          </div>
-          <div class='status_option'>
-            <%= link_to "退出登录", destroy_user_session_path, method: :get %>
-          </div>
+          <% if user_admin? %>
+            <div class='status_option'>
+              <%= link_to "商品大厅", store_url %>
+            </div>
+            <div class='status_option'>
+              <%= link_to "订单中心", orders_path %>
+            </div>
+            <div class='status_option'>
+              <%= link_to "退出登录", destroy_user_session_path, method: :get %>
+            </div>
+          <% else %>
+            <div class='status_option'>
+              <%= link_to "购物大厅", store_url %>
+            </div>
+            <div class='status_option'>
+              <%= link_to "个人中心", current_user %>
+            </div>
+            <div class='status_option'>
+              <%= link_to "退出登录", destroy_user_session_path, method: :get %>
+            </div>
+          <% end %>
+          
         <% else %>
           <div class='status_option'>
             <%= link_to "登录", new_user_session_url, method: :get %>

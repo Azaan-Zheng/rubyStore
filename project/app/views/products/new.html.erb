@@ -1,9 +1,16 @@
-<h1>New product</h1>
+<div class="main_form">
 
-<%= render "form", product: @product %>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <h2 class="active">新增商品 </h2>
 
-<br>
+      <%= render "form", product: @product %>
 
+      <br>
+    </div>
+  </div>
+</div>
+<!--
 <div>
   <%= link_to "Back to products", products_path %>
-</div>
+</div>-->

@@ -5,44 +5,60 @@
     <% end %>
 
     <div class='store_bar'>
-        <div>
+        <div class="bar_title">
             商品列表
         </div>
+        <div class="bar_select">
+            <%= form_tag(store_url, method: "get") do %>
+                <%= select_tag(:cur_pro_type, options_for_select(["全部类型"] + Product::PRODUCT_TYPES)) %>
+                <%= submit_tag("筛选") %>
+            <% end %>
+        </div>
+        <% if user_admin? %>
+            <div class="bar_edit">
+                <%= button_to "新增商品", new_product_path %>
+            </div>
+        <% end %>
     </div>
 
     <div class='store_content'>
         <% @products.each do |product| %>
-            <div class="entry">
-                <div class='entry_image'>
-                    <%= image_tag(product.image_url) %>
-                </div>
-                <div class='entry_info'>
-                    <div class="title_line"><%= product.title %></div>
-                    <div class='des_line'>
-                        <div class='des_content'>
-                            <%= sanitize(product.description) %>
+            <% if params[:cur_pro_type] == nil or params[:cur_pro_type] == "全部类型" or product.product_type == params[:cur_pro_type] %>
+                <div class="entry">
+                    <div class='entry_image'>
+                        <%= image_tag(product.image_url) %>
+                    </div>
+                    <div class='entry_info'>
+                        <div class="title_line"><%= product.title %></div>
+                        <div class='des_line'>
+                            <div class='des_content'>
+                                <%= sanitize(product.description) %>
+                            </div>
+                        </div>
+                        <div class="price_line">
+                            <span class="price">价格：<%= product.price %> 元</span>
+                            
                         </div>
                     </div>
-                    <div class="price_line">
-                        <span class="price">价格：<%= product.price %> 元</span>
-                        
+                    <div class='entry_option'>
+                        <% if user_admin? %>
+                            <div class="edit_line line_item">
+                                <%= button_to '编辑',edit_product_path(product) ,method: :get %>
+                            </div>
+                        <% else %>
+                            <div class="cart_line line_item">
+                                <%= button_to '加入购物车',items_path(product_id: product) %>
+                            </div>
+                            <div class="star_line line_item">
+                                <%= button_to '收藏',items_path(product_id: product) %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <div class="entry_button">
+                        <%= button_to '查看商品详情', product , method: :get %>
                     </div>
                 </div>
-                <div class='entry_option'>
-                    <div class="cart_line">
-                        <%= button_to '添加到购物车',items_path(product_id: product) %>
-                    </div>
-                    <div class="cart_line">
-                        <%= button_to '添加到收藏夹',items_path(product_id: product) %>
-                    </div>
-                    <div class="edit_line">
-                        <%= button_to '编辑商品信息',edit_product_path(product) ,method: :get %>
-                    </div>
-                </div>
-                <div class="entry_button">
-                    <%= button_to '查看商品详情', product , method: :get %>
-                </div>
-            </div>
+            <% end %>
         <% end %>
     </div>
 </div>
