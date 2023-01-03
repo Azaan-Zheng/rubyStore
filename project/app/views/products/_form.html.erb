@@ -17,6 +17,11 @@
   </div>
 
   <div>
+    <%= form.label :type, style: "display: block" %>
+    <%= form.select :type, Product::PRODUCT_TYPES, prompt: '请选择商品类型' %>
+  </div>
+
+  <div>
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description, :rows => 6 %>
   </div>

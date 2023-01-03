@@ -1,11 +1,14 @@
 class Product < ApplicationRecord
 
+    PRODUCT_TYPES = ["办公设备", "地方特产", "护理清洁", "家用电器", "粮油调味", "生活日用", "新鲜水果", "运动鞋包"]
+
     has_many :items
     before_destroy :ensure_not_referenced_by_any_item
 
-    validates :title, :description, :image_url, :presence => true
+    validates :title, :description, :type, :image_url, :presence => true
     validates :price, :numericality => {:greater_than_or_equal_to => 0.01}
     validates :title, :uniqueness => true
+    validates :type, :inclusion => PRODUCT_TYPES
     validates :image_url, format: {
         with:    %r{\.(gif|jpg|png)\z}i,
         message: '应为gif,png或jpg格式图片'
