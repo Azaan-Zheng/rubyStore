@@ -1,0 +1,17 @@
+<%= form_with(model: starfold) do |form| %>
+  <% if starfold.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(starfold.errors.count, "error") %> prohibited this starfold from being saved:</h2>
+
+      <ul>
+        <% starfold.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

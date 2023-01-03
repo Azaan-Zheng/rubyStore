@@ -1,0 +1,2 @@
+module StarfoldsHelper
+end

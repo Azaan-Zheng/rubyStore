@@ -1,0 +1,31 @@
+<div id="<%= dom_id sitem %>" class="entry">
+  <div class='entry_image'>
+      <%= image_tag(sitem.product.image_url) %>
+  </div>
+  <div class='entry_info'>
+      <div class="title_line"><%= sitem.product.title %></div>
+      <div class='des_line'>
+          <div class='des_content'>
+              <%= sanitize(sitem.product.description) %>
+          </div>
+      </div>
+      <div class="price_line">
+          <span class="price">价格：<%= sitem.product.price %> 元</span>
+          
+      </div>
+  </div>
+  <div class='entry_option'>
+      <div class="cart_line line_item">
+          <%= button_to '加入购物车',items_path(product_id: sitem.product) %>
+      </div>
+      <div class="star_line line_item">
+          <!--
+            <%= button_to '取消收藏',sitems_path(product_id: sitem.product) %>
+          -->
+          <%= button_to "取消收藏", sitem, method: :delete %>
+      </div>
+  </div>
+  <div class="entry_button">
+      <%= button_to '查看商品详情', sitem.product , method: :get %>
+  </div>
+</div>

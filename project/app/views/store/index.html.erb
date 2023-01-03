@@ -16,7 +16,7 @@
         </div>
         <% if user_admin? %>
             <div class="bar_edit">
-                <%= button_to "新增商品", new_product_path %>
+                <%= button_to "新增商品", new_product_path, method: :get %>
             </div>
         <% end %>
     </div>
@@ -50,7 +50,7 @@
                                 <%= button_to '加入购物车',items_path(product_id: product) %>
                             </div>
                             <div class="star_line line_item">
-                                <%= button_to '收藏',items_path(product_id: product) %>
+                                <%= button_to '收藏',sitems_path(product_id: product) %>
                             </div>
                         <% end %>
                     </div>

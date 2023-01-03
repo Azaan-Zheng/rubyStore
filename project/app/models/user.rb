@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
     has_many :orders, dependent: :destroy
     has_one :cart, dependent: :destroy
+    has_one :starfold, dependent: :destroy
+    
     validates :thename, :thetype, :thephone, :presence => true 
     validates :thetype, :inclusion => USER_TYPES
     validates :thename, :uniqueness => true

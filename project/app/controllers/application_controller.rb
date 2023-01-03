@@ -24,6 +24,17 @@ class ApplicationController < ActionController::Base
                 return current_user.cart
             end
         end
+
+        def current_starfold
+            if current_user.starfold.nil?
+                starfold = Starfold.create
+                session[:starfold_id] = starfold.id
+                current_user.starfold = starfold
+                return starfold
+            else
+                return current_user.starfold
+            end
+        end
             
 
         def user_admin?

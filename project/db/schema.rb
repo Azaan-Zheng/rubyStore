@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_03_121549) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_03_163521) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -48,6 +48,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_121549) do
     t.string "product_type"
   end
 
+  create_table "sitems", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "starfold_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "starfolds", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_starfolds_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "thename"
     t.integer "thetype", default: 1
@@ -65,4 +79,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_121549) do
 
   add_foreign_key "carts", "users"
   add_foreign_key "orders", "users"
+  add_foreign_key "starfolds", "users"
 end

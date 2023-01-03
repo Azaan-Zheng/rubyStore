@@ -1,0 +1,27 @@
+<%= form_with(model: sitem) do |form| %>
+  <% if sitem.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sitem.errors.count, "error") %> prohibited this sitem from being saved:</h2>
+
+      <ul>
+        <% sitem.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :product_id, style: "display: block" %>
+    <%= form.number_field :product_id %>
+  </div>
+
+  <div>
+    <%= form.label :starfold_id, style: "display: block" %>
+    <%= form.number_field :starfold_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

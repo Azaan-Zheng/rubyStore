@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Starfolds</h1>
+
+<div id="starfolds">
+  <% @starfolds.each do |starfold| %>
+    <%= render starfold %>
+    <p>
+      <%= link_to "Show this starfold", starfold %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New starfold", new_starfold_path %>
