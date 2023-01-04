@@ -22,5 +22,8 @@ class User < ApplicationRecord
           self.thetype = 2
         end
       end
-    
+
+      def own_orders
+        @orders
+      end
 end

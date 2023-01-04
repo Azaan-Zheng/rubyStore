@@ -1,27 +1,29 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>Title:</strong>
-    <%= product.title %>
-  </p>
+<div id="<%= dom_id product %>" class="product_main_one">
 
-  <p>
-    <strong>Type:</strong>
-    <%= product.product_type %>
-  </p>
+  <div class="product_info">
+    <div class="info_image">
+      <%= image_tag(product.image_url) %>
+    </div>
+    <div class="info_lines">
+      <div class="title_line">
+        <%= product.title %>
+      </div>
+      <div class="type_line">
+        <%= product.product_type %>
+      </div>
+      <div class="price_line">
+        <span class="price">价格：<%= product.price %> 元</span>
+      </div>
+    </div>
 
-  <p>
-    <strong>Description:</strong>
+  </div>
+
+  <div class="product_description">
+    <div class="title">
+      商品详情
+    </div>
     <%= product.description %>
-  </p>
-
-  <p>
-    <strong>Image:</strong>
-    <%= image_tag(product.image_url, :class => 'list_image') %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
+  </div>
+  
 
 </div>

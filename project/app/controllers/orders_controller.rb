@@ -3,8 +3,13 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    if user_admin?
+      @orders = Order.all
+    else
+      @orders = Order.all.where(:user => current_user)
     # @orders = Order.paginate :page=>params[:page], :per_page => 2
+    end
+    @orders
   end
 
   # GET /orders/1 or /orders/1.json

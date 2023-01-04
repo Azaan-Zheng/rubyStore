@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_user!
     helper_method :current_user, :user_signed_in?, :user_admin?
+    helper_method :current_cart, :current_starfold
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 

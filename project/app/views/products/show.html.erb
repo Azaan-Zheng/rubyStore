@@ -1,15 +1,28 @@
-<p style="color: green"><%= notice %></p>
+<div class="main_product">
 
-<%= render @product %>
+<div class="product_main">
+  <%= render @product %>
+</div>
+<div class="product_options">
 
-<div>
+  <% if user_admin? %>
+    <div class="common_button blue_button">
+      <%= button_to "编辑商品", edit_product_path(@product), method: :get %> 
+    </div>
+    <div class="common_button red_button">
+      <%= button_to "下架商品", @product, method: :delete %>
+    </div>
+  </div>
+  <% else %>
+    <div class="common_button green_button">
+      <%= button_to '加入购物车',items_path(product_id: @product), method: :get  %>
+    </div>
+    <div class="common_button yellow_button">
+      <%= button_to '收藏',items_path(product_id: @product), method: :get  %>
+    </div>
+  <% end %>
+  
+</div>
 
-  <%= link_to "编辑商品", edit_product_path(@product) %> |
-  <%= link_to "返回大厅", store_url %>
 
-  <%= button_to '加入购物车',items_path(product_id: @product) %>
-
-  <%= button_to '收藏',items_path(product_id: @product) %>
-
-  <%= button_to "下架商品", @product, method: :delete %>
 </div>
