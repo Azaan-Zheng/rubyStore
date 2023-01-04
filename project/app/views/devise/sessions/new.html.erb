@@ -17,6 +17,8 @@
       </form> %>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
         <div class="field fadeIn second">
           
           <%= f.text_field :thename ,placeholder: "用户名" %>

@@ -1,4 +1,5 @@
 <div class="main_sign">
+    
 
   <div class="wrapper fadeInDown">
     <div id="formContent">
@@ -16,7 +17,25 @@
       </form> %>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        
         <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="fielder fadeIn first error">
+          <% if resource.errors.any? %>
+            <div style="color: red">
+              <h2>
+                <%= I18n.t("errors.messages.not_saved",
+                          count: resource.errors.count,
+                          resource: resource.class.model_name.human.downcase)
+                %>
+              </h2>
+              <ul>
+                <% resource.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
 
 
         <div class="field fadeIn second">

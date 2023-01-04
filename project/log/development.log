@@ -30397,3 +30397,589 @@ Processing by StoreController#index as HTML
 Completed 200 OK in 58ms (Views: 25.7ms | ActiveRecord: 22.7ms | Allocations: 9912)
 
 
+  [1m[35m (78.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (84.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProducts (20230101083803)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "products" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "image_url" varchar, "price" decimal(8,2), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230101083803"]]
+  [1m[36mTRANSACTION (80.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCarts (20230101133749)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "carts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230101133749"]]
+  [1m[36mTRANSACTION (57.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateItems (20230101134651)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "cart_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230101134651"]]
+  [1m[36mTRANSACTION (72.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddQuantityToItems (20230102021412)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "items" ADD "quantity" integer DEFAULT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102021412"]]
+  [1m[36mTRANSACTION (43.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CombineItemsInCart (20230102024020)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102024020"]]
+  [1m[36mTRANSACTION (54.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateOrders (20230102042821)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "orders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address" text, "email" varchar, "pay_type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102042821"]]
+  [1m[36mTRANSACTION (87.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddOrderIdToItem (20230102043411)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "items" ADD "order_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102043411"]]
+  [1m[36mTRANSACTION (58.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUsers (20230102110115)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "thename" varchar, "thetype" integer DEFAULT 1, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102110115"]]
+  [1m[36mTRANSACTION (79.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToOrders (20230102113120)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aorders" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "address" text DEFAULT NULL, "email" varchar DEFAULT NULL, "pay_type" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aorders" ("id","name","address","email","pay_type","created_at","updated_at")
+                     SELECT "id","name","address","email","pay_type","created_at","updated_at" FROM "orders"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "orders"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "orders" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "address" text DEFAULT NULL, "email" varchar DEFAULT NULL, "pay_type" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "orders" ("id","name","address","email","pay_type","created_at","updated_at")
+                     SELECT "id","name","address","email","pay_type","created_at","updated_at" FROM "aorders"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aorders"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_orders_on_user_id" ON "orders" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aorders" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "address" text DEFAULT NULL, "email" varchar DEFAULT NULL, "pay_type" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aorders_on_user_id" ON "aorders" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aorders" ("id","name","address","email","pay_type","created_at","updated_at","user_id")
+                     SELECT "id","name","address","email","pay_type","created_at","updated_at","user_id" FROM "orders"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "orders"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "orders" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "address" text DEFAULT NULL, "email" varchar DEFAULT NULL, "pay_type" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_f868b47f6a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_orders_on_user_id" ON "orders" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "orders" ("id","name","address","email","pay_type","created_at","updated_at","user_id")
+                     SELECT "id","name","address","email","pay_type","created_at","updated_at","user_id" FROM "aorders"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aorders"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102113120"]]
+  [1m[36mTRANSACTION (96.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDeviseToUsers (20230102115017)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "users" ADD "email" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "users" ADD "encrypted_password" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" varchar[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" datetime(6)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_created_at" datetime(6)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102115017"]]
+  [1m[36mTRANSACTION (73.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToCarts (20230102151423)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acarts" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acarts" ("id","created_at","updated_at")
+                     SELECT "id","created_at","updated_at" FROM "carts"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "carts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "carts" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "carts" ("id","created_at","updated_at")
+                     SELECT "id","created_at","updated_at" FROM "acarts"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "acarts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_carts_on_user_id" ON "carts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acarts" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "tindex_acarts_on_user_id" ON "acarts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acarts" ("id","created_at","updated_at","user_id")
+                     SELECT "id","created_at","updated_at","user_id" FROM "carts"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "carts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "carts" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_ea59a35211"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_carts_on_user_id" ON "carts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "carts" ("id","created_at","updated_at","user_id")
+                     SELECT "id","created_at","updated_at","user_id" FROM "acarts"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "acarts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102151423"]]
+  [1m[36mTRANSACTION (110.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddThephoneToUsers (20230102154644)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "users" ADD "thephone" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230102154644"]]
+  [1m[36mTRANSACTION (62.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddProductTypeToProducts (20230103121549)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "products" ADD "product_type" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230103121549"]]
+  [1m[36mTRANSACTION (58.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateStarfolds (20230103162357)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "starfolds" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230103162357"]]
+  [1m[36mTRANSACTION (75.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToStarfolds (20230103162823)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "astarfolds" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "astarfolds" ("id","created_at","updated_at")
+                     SELECT "id","created_at","updated_at" FROM "starfolds"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "starfolds"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "starfolds" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "starfolds" ("id","created_at","updated_at")
+                     SELECT "id","created_at","updated_at" FROM "astarfolds"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "astarfolds"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_starfolds_on_user_id" ON "starfolds" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "astarfolds" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_astarfolds_on_user_id" ON "astarfolds" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "astarfolds" ("id","created_at","updated_at","user_id")
+                     SELECT "id","created_at","updated_at","user_id" FROM "starfolds"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "starfolds"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "starfolds" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_1a4cc17e23"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_starfolds_on_user_id" ON "starfolds" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "starfolds" ("id","created_at","updated_at","user_id")
+                     SELECT "id","created_at","updated_at","user_id" FROM "astarfolds"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "astarfolds"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230103162823"]]
+  [1m[36mTRANSACTION (81.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSitems (20230103163521)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "sitems" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "starfold_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230103163521"]]
+  [1m[36mTRANSACTION (83.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddOrderTimeToOrders (20230104033802)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "orders" ADD "order_time" datetime(6)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230104033802"]]
+  [1m[36mTRANSACTION (68.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddTotalPriceToOrders (20230104040602)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "orders" ADD "total_price" decimal(8,2)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230104040602"]]
+  [1m[36mTRANSACTION (45.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddOrderStatusToOrders (20230104055319)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "orders" ADD "order_status" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230104055319"]]
+  [1m[36mTRANSACTION (38.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-01-04 11:14:40.321414"], ["updated_at", "2023-01-04 11:14:40.321414"]]
+  [1m[36mTRANSACTION (56.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-01-04 19:16:18 +0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StoreController#index as HTML
+Completed 401 Unauthorized in 53ms (ActiveRecord: 0.0ms | Allocations: 5198)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:16:19 +0800
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 44.5ms | Allocations: 2288)
+  Rendered layout layouts/application.html.erb (Duration: 1415.8ms | Allocations: 140046)
+Completed 200 OK in 1529ms (Views: 1451.3ms | ActiveRecord: 0.6ms | Allocations: 162404)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:16:23 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 17.9ms | Allocations: 257)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 114.3ms | Allocations: 2270)
+  Rendered layout layouts/application.html.erb (Duration: 119.4ms | Allocations: 5145)
+Completed 200 OK in 123ms (Views: 121.4ms | ActiveRecord: 0.0ms | Allocations: 6480)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:16:47 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"admin", "email"=>"mingyu_zheng@126.com", "thephone"=>"17325370689", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "mingyu_zheng@126.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", "admin"], ["LIMIT", 1]]
+  [1m[36mUser Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/models/user.rb:21:in `ensure_has_a_admin'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("thename", "thetype", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "thephone") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["thename", "admin"], ["thetype", 2], ["created_at", "2023-01-04 11:16:47.798962"], ["updated_at", "2023-01-04 11:16:47.798962"], ["email", "mingyu_zheng@126.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["thephone", 17325370689]]
+  [1m[36mTRANSACTION (107.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 502ms (ActiveRecord: 107.8ms | Allocations: 12233)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2023-01-04 19:16:47 +0800
+Processing by UsersController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:66:in `set_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `current_cart'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/application_controller.rb:27:in `current_cart'
+  [1m[36mCart Create (0.3ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES (?, ?, ?)[0m  [["created_at", "2023-01-04 11:16:48.082587"], ["updated_at", "2023-01-04 11:16:48.082587"], ["user_id", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_cart'
+  [1m[36mTRANSACTION (57.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/application_controller.rb:27:in `current_cart'
+  [1m[36mStarfold Load (0.1ms)[0m  [1m[34mSELECT "starfolds".* FROM "starfolds" WHERE "starfolds"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:35:in `current_starfold'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/application_controller.rb:38:in `current_starfold'
+  [1m[36mStarfold Create (0.4ms)[0m  [1m[32mINSERT INTO "starfolds" ("created_at", "updated_at", "user_id") VALUES (?, ?, ?)[0m  [["created_at", "2023-01-04 11:16:48.177817"], ["updated_at", "2023-01-04 11:16:48.177817"], ["user_id", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `current_starfold'
+  [1m[36mTRANSACTION (57.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/application_controller.rb:38:in `current_starfold'
+  Rendered users/_user.html.erb (Duration: 261.4ms | Allocations: 38461)
+  Rendered users/show.html.erb within layouts/application (Duration: 281.6ms | Allocations: 39176)
+  Rendered layout layouts/application.html.erb (Duration: 289.0ms | Allocations: 42077)
+Completed 200 OK in 300ms (Views: 173.7ms | ActiveRecord: 119.5ms | Allocations: 45736)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2023-01-04 19:20:20 +0800
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 79ms (ActiveRecord: 0.6ms | Allocations: 4895)
+
+
+Started GET "/" for 127.0.0.1 at 2023-01-04 19:20:20 +0800
+Processing by StoreController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 278)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:20:20 +0800
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1065)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | Allocations: 4610)
+Completed 200 OK in 18ms (Views: 15.6ms | ActiveRecord: 0.0ms | Allocations: 6079)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:20:23 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 23.0ms | Allocations: 5637)
+  Rendered layout layouts/application.html.erb (Duration: 23.6ms | Allocations: 5710)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 0.0ms | Allocations: 6879)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `user' for #<ActionView::Base:0x0000000000fd48>
+Did you mean?  @user):
+    1: <div class="main_sign">
+    2:     <% if user.errors.any? %>
+    3:       <div style="color: red">
+    4:         <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    5: 
+  
+app/views/devise/registrations/new.html.erb:2
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:20:43 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.5ms | Allocations: 244)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 5.8ms | Allocations: 1935)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 5491)
+Completed 200 OK in 18ms (Views: 16.1ms | ActiveRecord: 0.0ms | Allocations: 6909)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:20:45 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 3.5ms | Allocations: 1625)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 10.9ms | Allocations: 5477)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | Allocations: 8362)
+Completed 200 OK in 29ms (Views: 17.2ms | ActiveRecord: 0.4ms | Allocations: 13069)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:20:47 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 2.9ms | Allocations: 1614)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 14.2ms | Allocations: 5242)
+  Rendered layout layouts/application.html.erb (Duration: 21.0ms | Allocations: 8129)
+Completed 200 OK in 40ms (Views: 21.9ms | ActiveRecord: 0.6ms | Allocations: 12650)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:20:47 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 2.6ms | Allocations: 1614)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 11.2ms | Allocations: 5242)
+  Rendered layout layouts/application.html.erb (Duration: 16.8ms | Allocations: 8127)
+Completed 200 OK in 33ms (Views: 17.4ms | ActiveRecord: 0.6ms | Allocations: 12623)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:20:47 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 4.9ms | Allocations: 1614)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 18.1ms | Allocations: 5242)
+  Rendered layout layouts/application.html.erb (Duration: 24.8ms | Allocations: 8127)
+Completed 200 OK in 41ms (Views: 26.8ms | ActiveRecord: 0.5ms | Allocations: 12623)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:20:47 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 4.0ms | Allocations: 1614)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 13.1ms | Allocations: 5242)
+  Rendered layout layouts/application.html.erb (Duration: 21.9ms | Allocations: 8127)
+Completed 200 OK in 30ms (Views: 23.2ms | ActiveRecord: 0.3ms | Allocations: 12615)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:20:48 +0800
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1059)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 3934)
+Completed 200 OK in 15ms (Views: 12.8ms | ActiveRecord: 0.0ms | Allocations: 5160)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:20:50 +0800
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms | Allocations: 454)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:20:51 +0800
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms | Allocations: 437)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:20:53 +0800
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms | Allocations: 459)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:21:00 +0800
+Processing by Devise::RegistrationsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 12)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.3ms | Allocations: 886)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 3672)
+Completed 200 OK in 14ms (Views: 11.9ms | ActiveRecord: 0.0ms | Allocations: 4211)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:21:29 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 12)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.9ms | Allocations: 874)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 3660)
+Completed 200 OK in 16ms (Views: 13.8ms | ActiveRecord: 0.0ms | Allocations: 4309)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:25:19 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.1ms | Allocations: 246)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1804)
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | Allocations: 5348)
+Completed 200 OK in 25ms (Views: 22.9ms | ActiveRecord: 0.0ms | Allocations: 6755)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:25:34 +0800
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.4ms | Allocations: 15)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1151)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 4026)
+Completed 200 OK in 15ms (Views: 13.5ms | ActiveRecord: 0.0ms | Allocations: 5254)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:25:45 +0800
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"阿斯大", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."thename" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["thename", "阿斯大"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 49ms (ActiveRecord: 0.3ms | Allocations: 4103)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:25:50 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 5.7ms | Allocations: 872)
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | Allocations: 3658)
+Completed 200 OK in 28ms (Views: 21.3ms | ActiveRecord: 0.0ms | Allocations: 4310)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:32:37 +0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 9.2ms | Allocations: 3469)
+  Rendered layout layouts/application.html.erb (Duration: 160.4ms | Allocations: 40804)
+Completed 200 OK in 204ms (Views: 172.0ms | ActiveRecord: 1.0ms | Allocations: 65965)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:33:00 +0800
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.3ms | Allocations: 253)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 9.2ms | Allocations: 2108)
+  Rendered layout layouts/application.html.erb (Duration: 15.8ms | Allocations: 4988)
+Completed 200 OK in 21ms (Views: 18.4ms | ActiveRecord: 0.0ms | Allocations: 6456)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2023-01-04 19:33:03 +0800
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms | Allocations: 513)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:33:05 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.9ms | Allocations: 809)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 3603)
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 0.0ms | Allocations: 4287)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:33:09 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 10.9ms | Allocations: 3883)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | Allocations: 6768)
+Completed 200 OK in 50ms (Views: 17.3ms | ActiveRecord: 0.4ms | Allocations: 17479)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:33:10 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 9.8ms | Allocations: 3644)
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | Allocations: 6531)
+Completed 200 OK in 26ms (Views: 15.6ms | ActiveRecord: 0.4ms | Allocations: 11095)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:33:10 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 9.7ms | Allocations: 3644)
+  Rendered layout layouts/application.html.erb (Duration: 15.9ms | Allocations: 6529)
+Completed 200 OK in 34ms (Views: 16.7ms | ActiveRecord: 0.6ms | Allocations: 11075)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-04 19:33:11 +0800
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"thename"=>"", "email"=>"", "thephone"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."thename" = ? LIMIT ?[0m  [["thename", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 8.2ms | Allocations: 3644)
+  Rendered layout layouts/application.html.erb (Duration: 16.2ms | Allocations: 6531)
+Completed 200 OK in 34ms (Views: 17.1ms | ActiveRecord: 0.5ms | Allocations: 11088)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:35:13 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1592)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | Allocations: 5136)
+Completed 200 OK in 17ms (Views: 15.5ms | ActiveRecord: 0.0ms | Allocations: 6588)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2023-01-04 19:35:32 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1595)
+  Rendered layout layouts/application.html.erb (Duration: 10.8ms | Allocations: 5139)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 0.0ms | Allocations: 6586)
+
+
