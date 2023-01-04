@@ -37,6 +37,8 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.add_items_from_cart(current_cart)
     @order.user = current_user
+    @order.order_time = Time.now
+    @order.total_price = current_cart.total_price
 
     respond_to do |format|
       if @order.save
@@ -82,6 +84,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type)
+      params.require(:order).permit(:name, :address, :email, :pay_type, :order_time)
     end
 end

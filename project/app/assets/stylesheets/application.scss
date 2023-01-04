@@ -840,13 +840,43 @@
         justify-content: center;
     }
 
+    .item_list_column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #7293ac;
+
+        .list_column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 30px;
+            min-width: 300px;
+            padding-bottom: 10px;
+
+            ul {
+                margin-bottom: 0px;
+            }
+
+            p {
+                margin-top: 5px;
+                margin-bottom: 5px;
+                font-size: 15px;
+                font-weight: 600;
+                color: #aaaaaa;
+            }
+        }
+    }
+
     .fielder {
         display: flex;
         width: 100%;
         flex-direction: row;
         align-items: center;
         padding-left: 30px;
-        padding-right: 20px;
+        padding-right: 30px;
 
         .label {
             width: 100px;

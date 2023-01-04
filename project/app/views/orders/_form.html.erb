@@ -1,37 +1,54 @@
 <%= form_with(model: order) do |form| %>
-  <% if order.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+  <div class="fielder fadeIn first error">
+    <% if order.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
+        <ul>
+          <% order.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="fielder fadeIn first item_list_column">
+    <div class="list_column">
+      <p>商品清单</p>
       <ul>
-        <% order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% current_cart.items.each do |item| %>
+          <li><%= item.product.title %> &nbsp; x <%= item.quantity %></li>
         <% end %>
       </ul>
+      <p>总价：<%= current_cart.total_price %></p>
     </div>
-  <% end %>
+  </div>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
+  <div class="fielder fadeIn second">
+    <%= form.label "收件人姓名", class: "label", style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_area :address %>
-  </div>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
+  <div class="fielder fadeIn second">
+    <%= form.label "收件人邮箱", class: "label", style: "display: block" %>
     <%= form.email_field :email %>
   </div>
 
-  <div>
-    <%= form.label :pay_type, style: "display: block" %>
+  <div class="fielder fadeIn third">
+    <%= form.label "收获地址", class: "label", style: "display: block" %>
+    <%= form.text_area :address, :rows => 6 %>
+  </div>
+
+  <div class="fielder fadeIn fourth lineline">
+    <%= form.label "支付类型", class: "label", style: "display: block" %>
     <%= form.select :pay_type, Order::PAYMENT_TYPES, prompt: '请选择支付方式' %>
   </div>
 
-  <div>
+  
+
+  <div class="fadeIn fourth">
     <%= form.submit %>
   </div>
 <% end %>
+
