@@ -1,5 +1,6 @@
 class SitemsController < ApplicationController
   before_action :set_sitem, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin, only: %i[  ]
 
   # GET /sitems or /sitems.json
   def index

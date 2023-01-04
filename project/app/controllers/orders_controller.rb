@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin, only: %i[  ]
 
   # GET /orders or /orders.json
   def index
@@ -27,7 +28,7 @@ class OrdersController < ApplicationController
   def new
     @cart = current_cart
     if @cart.items.empty?
-      redirect_to store_url, :notice => "购物车目前为空"
+      redirect_to orders_url, :notice => "购物车目前为空"
       return
     end
 

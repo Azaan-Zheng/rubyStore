@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit(:sign_in, keys: [:thename])
     end
 
+    def authenticate_admin
+        if current_user.thetype == 1
+            redirect_to store_url
+        end
+    end
 
     private
         def current_cart

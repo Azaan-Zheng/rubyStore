@@ -1,5 +1,6 @@
 class StarfoldsController < ApplicationController
   before_action :set_starfold, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin, only: %i[ index ]
 
   # GET /starfolds or /starfolds.json
   def index
