@@ -805,6 +805,11 @@
             text-decoration: none;
         }
     }
+
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     
     
     
@@ -1744,4 +1749,174 @@
         align-items: center;
         width: 300px;
     }
+}
+
+.main_order {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .order_header {
+        width: 600px;
+        height: 50px;
+        text-align: center;
+        position: relative;
+        background-color: rgba(0,0,0,0);
+        
+        /*progressbar*/
+        #progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            /*CSS counters to number the steps*/
+            counter-reset: step;
+            padding-left: 0px;
+            background-color: rgba(0,0,0,0);
+        }
+        #progressbar li {
+            list-style-type: none;
+            color: #444444;
+            text-transform: uppercase;
+            font-size: 15px;
+            width: 33.33%;
+            float: left;
+            position: relative;
+        }
+        #progressbar li:before {
+            content: counter(step);
+            counter-increment: step;
+            width: 30px;
+            line-height: 30px;
+            display: block;
+            font-size: 15px;
+            color: #333;
+            background: #cccccc;
+            border-radius: 5px;
+            margin: 0 auto 5px auto;
+        }
+        /*progressbar connectors*/
+        #progressbar li:after {
+            content: '';
+            width: 80%;
+            height: 3px;
+            background-color: #cccccc;
+            position: absolute;
+            left: -40%;
+            top: 15px;
+        }
+        #progressbar li:first-child:after {
+            /*connector not needed before the first step*/
+            content: none; 
+        }
+        /*marking active/completed steps green*/
+        /*The number of the step and the connector before it = green*/
+        #progressbar li.active:before,  #progressbar li.active:after{
+            background: #246caf;
+            color: white;
+        }
+    }
+
+    .order_option {
+        display: flex;
+        width: 300px;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+    }
+}
+
+.main_orders {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .order_head {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        margin-bottom: 30px;
+
+        .head_title {
+            font-size: 20px;
+            font-weight: bolder;
+
+        }
+    }
+
+    .order_content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .time {
+            width: 20%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+        }
+
+        .username {
+            width: 20%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+        }
+
+        .price {
+            width: 20%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+        }
+
+        .name {
+            width: 20%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+        }
+
+        .option {
+            margin-left: auto;
+            width: 15%;
+            margin-right: 20px;
+        }
+
+        .order_title {
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 5px 5px;
+            border-bottom: 2px solid rgba(111,111,111,0.3);
+            height: 60px;
+        }
+
+        .order_item {
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 5px 5px;
+            border-bottom: 2px solid rgba(111,111,111,0.3);
+            height: 60px;
+        }
+
+    }
+
 }

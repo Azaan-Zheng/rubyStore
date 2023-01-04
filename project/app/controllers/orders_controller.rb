@@ -14,6 +14,13 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
+    # if params[:progress]
+    #   if @order.order_status == Order::ORDER_STATUSES[0]
+    #     @order.update_columns(:order_status, Order::ORDER_STATUSES[1])
+    #   elsif @order.order_status == Order::ORDER_STATUSES[1]
+    #     @order.update_columns(:order_status, Order::ORDER_STATUSES[2])
+    #   end
+    # end
   end
 
   # GET /orders/new
@@ -32,6 +39,8 @@ class OrdersController < ApplicationController
   def edit
   end
 
+  
+
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
@@ -39,6 +48,7 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @order.order_time = Time.now
     @order.total_price = current_cart.total_price
+    @order.order_status = Order::ORDER_STATUSES[0]
 
     respond_to do |format|
       if @order.save
@@ -84,6 +94,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type, :order_time)
+      params.require(:order).permit(:name, :address, :email, :pay_type, :order_time, :order_status)
     end
 end

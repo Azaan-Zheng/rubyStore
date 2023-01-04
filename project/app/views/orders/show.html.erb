@@ -1,10 +1,48 @@
-<p style="color: green"><%= notice %></p>
+<div class="main_order">
 
-<%= render @order %>
+  <div class="order_header">
+    <ul id="progressbar">
+      <li class="active">待发货</li>
 
-<div>
-  <%= link_to "Edit this order", edit_order_path(@order) %> |
-  <%= link_to "Back to orders", orders_path %>
+      <% if @order.order_status == Order::ORDER_STATUSES[1] or @order.order_status == Order::ORDER_STATUSES[2] %>
+        <li class="active">待收货</li>
+      <% else %>
+        <li>待收货</li>
+      <% end %>
 
-  <%= button_to "Destroy this order", @order, method: :delete %>
+      <% if @order.order_status == Order::ORDER_STATUSES[2] %>
+        <li class="active">已完成</li>
+      <% else %>
+        <li>已完成</li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="main_form">
+
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <h2 class="active">订单详情 </h2>
+
+          <%= render @order %>
+
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="order_option">
+    <% if user_admin? %>
+      <div class="common_button red_button">
+        <%= button_to "删除订单", @order, method: :delete %>
+      </div>
+    <% else %>
+      <% if @order.order_status == Order::ORDER_STATUSES[0] %>
+        <div class="common_button red_button">
+          <%= button_to "撤销订单", @order, method: :delete %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
 </div>

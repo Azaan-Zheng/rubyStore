@@ -1,16 +1,52 @@
-<p style="color: green"><%= notice %></p>
+<div class="main_orders">
+  <div class="order_head">
+    <div class="head_title">
+      <% if user_admin? %>
+        订单中心
+      <% else %>
+        我的订单
+      <% end %>
+    </div>
+  </div>
 
-<h1>Orders</h1>
-
-<div id="orders">
-  <% @orders.each do |order| %>
-    <%= render order %>
-    <p>
-      <%= link_to "Show this order", order %>
-    </p>
-  <% end %>
+  <div class="order_content">
+    <div class="order_title">
+      <div class="time">
+        <strong>下单时间</strong>
+      </div>
+      <div class="username">
+        <strong>下单用户</strong>
+      </div>
+      <div class="price">
+        <strong>订单金额</strong>
+      </div>
+      <div class="name">
+        <strong>收件人</strong>
+      </div>
+      <div class="option">
+        <strong>操作</strong>
+      </div>
+    </div>
+    <% @orders.each do |order| %>
+      <div class="order_item">
+        <div class="time">
+          <%= order.order_time %>
+        </div>
+        <div class="username">
+          <%= order.user.thename %>
+        </div>
+        <div class="price">
+          <%= order.total_price %>
+        </div>
+        <div class="name">
+          <%= order.name %>
+        </div>
+        <div class="option">
+          <div class="common_button blue_button">
+            <%= button_to "订单详情", order, method: :get %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New order", new_order_path %>
-
-
